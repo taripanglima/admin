@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="ms">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#070707"><meta name="application-name" content="PGPM Admin Control"><meta name="description" content="PGPM Admin Control — Permohonan dan pengurusan pentadbir Roda Impian PGPM">
+<link rel="manifest" href="site.webmanifest"><link rel="icon" href="assets/pgpm.png"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer"><title>PGPM Admin Control</title>
+<style>
+:root{--bg:#070707;--panel:#121212;--panel2:#181818;--line:#3b3324;--gold:#e3b45d;--gold2:#f1cf83;--text:#f7f4ed;--muted:#aaa49a;--ok:#55d98b;--bad:#ef747b;--blue:#79aef8}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 50% -15%,#381018 0,#12090b 32%,#070707 70%);color:var(--text);font-family:Inter,Segoe UI,Arial,sans-serif;min-height:100vh}button,input{font:inherit}button{cursor:pointer}.wrap{width:min(1050px,94vw);margin:auto;padding:22px 0 42px}.top{display:flex;align-items:center;gap:14px;border-bottom:1px solid var(--line);padding:10px 0 18px}.logo{width:60px;height:60px;object-fit:contain}.brand{font-size:12px;letter-spacing:2px;color:var(--gold2);font-weight:900}.title{font-size:clamp(26px,5vw,44px);font-weight:950;margin:3px 0}.user{margin-left:auto;text-align:right;font-size:12px;color:var(--muted)}.card{background:rgba(18,18,18,.95);border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:0 20px 60px rgba(0,0,0,.35);margin-top:18px}.tabs{display:flex;gap:8px;overflow:auto;margin:24px 0 16px}.tab,.btn{border:1px solid #403a31;background:#171717;color:var(--text);border-radius:11px;padding:10px 13px;font-weight:800;white-space:nowrap}.tab.active,.btn.primary{background:linear-gradient(135deg,var(--gold2),#b08024);color:#0d0d0d;border-color:transparent}.btn.danger{background:#3a171a;border-color:#713239}.btn.ok{background:#153b26;border-color:#2f8656}.btn.ghost{background:transparent}.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.field{margin:0 0 12px}.field label{display:block;color:var(--muted);font-size:12px;margin-bottom:6px}.field input{width:100%;background:#0b0b0b;color:var(--text);border:1px solid #38332c;border-radius:10px;padding:11px;outline:none}.field input:focus{border-color:var(--gold)}.full{grid-column:1/-1}.msg{min-height:22px;color:var(--muted);font-size:13px}.notice{padding:13px 14px;border-radius:13px;background:#1b1710;border:1px solid #5a4825;color:#eee0bd;line-height:1.5;font-size:13px}.notice.ok{background:#102419;border-color:#285d3e}.notice.bad{background:#2a1316;border-color:#713239}.request{display:grid;grid-template-columns:1fr auto;gap:15px;align-items:center;border:1px solid #332f29;background:#0d0d0d;border-radius:14px;padding:14px;margin-top:10px}.meta{color:var(--muted);font-size:12px;line-height:1.6}.actions{display:flex;gap:7px;flex-wrap:wrap;justify-content:flex-end}.count{display:inline-flex;min-width:23px;height:23px;padding:0 7px;border-radius:999px;align-items:center;justify-content:center;background:#7b101d;color:#fff;font-size:11px}.empty{padding:32px;text-align:center;color:var(--muted)}.statgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.stat{padding:14px;border:1px solid #342f28;border-radius:13px;background:#0d0d0d}.stat b{font-size:26px}.stat span{display:block;color:var(--muted);font-size:11px;margin-top:4px}.toast{position:fixed;left:50%;bottom:20px;transform:translate(-50%,130%);opacity:0;transition:.25s;z-index:20;width:min(560px,calc(100vw - 28px));background:#151515;border:1px solid var(--gold);border-radius:14px;padding:13px 15px;box-shadow:0 20px 60px #000}.toast.show{transform:translate(-50%,0);opacity:1}.login{width:min(520px,94vw);margin:8vh auto}.center{text-align:center}.small{font-size:12px}.hidden{display:none!important}.footer{text-align:center;color:#766f66;font-size:11px;margin-top:25px}.push{display:flex;gap:10px;align-items:center;justify-content:space-between;padding:12px;border:1px solid #3b3324;border-radius:13px;margin-bottom:15px}.switch{font-size:12px;color:var(--muted)}@media(max-width:700px){.wrap{width:92vw}.top{align-items:flex-start}.user{display:none}.grid,.statgrid{grid-template-columns:1fr}.request{grid-template-columns:1fr}.actions{justify-content:flex-start}.btn{flex:1}.tabs .tab{flex:0 0 auto}}
+
+/* PGPM Admin Control guided tour */
+.pgpm-at-layer{position:fixed;inset:0;z-index:9999;pointer-events:none}.pgpm-at-dim{position:fixed;background:rgba(0,0,0,.68);pointer-events:none;z-index:9999}.pgpm-at-target{position:relative!important;z-index:10001!important;outline:3px solid var(--gold2)!important;outline-offset:6px!important;box-shadow:0 0 0 2px rgba(227,180,93,.18),0 0 25px rgba(227,180,93,.7)!important}.pgpm-at-card{position:fixed;width:min(470px,calc(100vw - 28px));background:#121212;border:1px solid rgba(227,180,93,.65);border-radius:17px;padding:20px;box-shadow:0 25px 80px rgba(0,0,0,.6);pointer-events:auto}.pgpm-at-step{font-size:11px;letter-spacing:.08em;color:var(--gold2);font-weight:900;text-transform:uppercase}.pgpm-at-card h3{margin:6px 0}.pgpm-at-card p{margin:0;color:#d8d3ca;line-height:1.5}.pgpm-at-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:15px}.pgpm-at-btn{border:1px solid #403a31;background:#171717;color:#fff;border-radius:10px;padding:9px 14px;font-weight:800}.pgpm-at-btn.primary{background:linear-gradient(135deg,var(--gold2),#b08024);color:#0d0d0d;border-color:transparent}.pgpm-at-btn:disabled{opacity:.4}.pgpm-at-note{margin-top:7px;font-size:12px;color:#9f998f}.pgpm-at-required{margin-top:8px;font-size:12px;color:#f1cf83;font-weight:800}.pgpm-at-info{position:fixed;right:18px;top:18px;z-index:1000;width:42px;height:42px;border-radius:50%;border:1px solid rgba(227,180,93,.7);background:#121212;color:#fff;font-weight:900;font-size:20px;cursor:pointer}
+
+.profile-admin-card{display:grid;grid-template-columns:120px 1fr;gap:18px;align-items:start;margin:14px 0}
+.profile-admin-avatar{width:110px;height:140px;object-fit:cover;border-radius:14px;border:2px solid rgba(227,180,93,.55);background:#080a0d}
+.profile-admin-avatar.empty{object-fit:contain;padding:18px}
+.profile-admin-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.profile-admin-item{padding:9px 10px;border:1px solid rgba(227,180,93,.12);border-radius:10px;background:#0b1017}
+.profile-admin-item span{display:block;font-size:11px;color:var(--muted);margin-bottom:3px}.profile-admin-item b{word-break:break-word}
+@media(max-width:700px){.profile-admin-card{grid-template-columns:1fr}.profile-admin-grid{grid-template-columns:1fr}}
+
+
+/* v1.9.1 notifications + super admin + chat */
+.header-tools{margin-left:auto;display:flex;align-items:center;gap:12px}.bell-btn{position:relative;width:44px;height:44px;border-radius:50%;border:1px solid rgba(227,180,93,.72);background:#111;color:var(--gold2);font-size:18px}.bell-btn:hover{background:#1c1710}.bell-badge{position:absolute;right:-3px;top:-4px;min-width:19px;height:19px;padding:0 5px;border-radius:999px;background:#9b1323;color:#fff;font-size:10px;display:flex;align-items:center;justify-content:center;border:2px solid #070707}.header-tools .user{margin-left:0}.limited-banner{margin-top:18px}.super-grid{display:grid;grid-template-columns:1fr;gap:10px}.contact-card{display:grid;grid-template-columns:56px 1fr auto;gap:12px;align-items:center;border:1px solid #332f29;background:#0d0d0d;border-radius:14px;padding:13px}.contact-avatar{width:50px;height:62px;object-fit:cover;border-radius:10px;border:1px solid rgba(227,180,93,.35);background:#080a0d}.role-chip{font-size:11px;color:var(--gold2);font-weight:900}.icon-btn{width:42px;height:42px;border-radius:11px;border:1px solid #4a4030;background:#171717;color:var(--gold2)}.icon-btn:hover{background:#251d10}.notification-panel{position:fixed;right:22px;top:78px;width:min(390px,calc(100vw - 30px));max-height:70vh;overflow:auto;background:#111;border:1px solid rgba(227,180,93,.55);border-radius:16px;box-shadow:0 25px 80px #000;z-index:5000;padding:12px}.notification-head{display:flex;justify-content:space-between;align-items:center;padding:4px 4px 10px}.notification-item{border:1px solid #322d26;background:#0b0b0b;border-radius:12px;padding:12px;margin-top:8px;cursor:pointer}.notification-item.unread{border-color:rgba(227,180,93,.65);background:#17120c}.notification-item h4{margin:0 0 4px;font-size:13px}.notification-item p{margin:0;color:#c6c0b6;font-size:12px;line-height:1.45}.notification-item small{display:block;margin-top:7px;color:#817a70;font-size:10px}.modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:6000;display:flex;align-items:center;justify-content:center;padding:18px}.modal{width:min(900px,96vw);max-height:90vh;background:#111;border:1px solid rgba(227,180,93,.55);border-radius:18px;box-shadow:0 30px 100px #000;display:flex;flex-direction:column;overflow:hidden}.modal-head{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid #332d25}.modal-body{padding:16px;overflow:auto}.modal-close{background:transparent;border:1px solid #403a31;color:#fff;border-radius:9px;width:38px;height:38px}.chat-layout{display:grid;grid-template-columns:240px 1fr;min-height:520px}.chat-contacts{border-right:1px solid #332d25;padding:10px;overflow:auto}.chat-contact{display:flex;gap:9px;align-items:center;padding:10px;border-radius:10px;cursor:pointer}.chat-contact.active,.chat-contact:hover{background:#1b1710}.chat-contact .mini-avatar{width:38px;height:48px;object-fit:cover;border-radius:8px}.chat-main{display:flex;flex-direction:column;min-width:0}.chat-title{padding:12px 14px;border-bottom:1px solid #332d25}.chat-messages{flex:1;overflow:auto;padding:14px;background:linear-gradient(180deg,#0d0d0d,#111)}.bubble{max-width:78%;padding:9px 11px;border-radius:13px;margin:7px 0;line-height:1.45;font-size:13px}.bubble.mine{margin-left:auto;background:#4b3818;color:#fff0c9;border:1px solid #7d5b22}.bubble.theirs{background:#1a1a1a;border:1px solid #34312c}.bubble .attachment{display:block;margin-top:7px;padding:7px 9px;border-radius:9px;background:#0b0b0b;border:1px solid #3c372f;color:var(--gold2);text-decoration:none}.bubble img{display:block;max-width:260px;max-height:220px;border-radius:8px;margin-top:7px}.chat-compose{border-top:1px solid #332d25;padding:10px;display:flex;gap:8px;align-items:flex-end}.chat-compose textarea{flex:1;min-height:44px;max-height:120px;resize:vertical;background:#0b0b0b;color:#fff;border:1px solid #403a31;border-radius:10px;padding:10px}.chat-file{display:none}.attach-name{font-size:10px;color:var(--muted);max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.super-tab-note{margin-bottom:12px}.role-note{margin-top:8px;color:var(--muted);font-size:11px}.invite-notice{border-color:rgba(227,180,93,.7)!important}.admin-limited{max-width:720px;margin:18px auto}.admin-limited .card{margin-top:0}@media(max-width:700px){.header-tools{gap:7px}.chat-layout{grid-template-columns:1fr}.chat-contacts{border-right:0;border-bottom:1px solid #332d25;max-height:150px;display:flex;overflow:auto}.chat-contact{min-width:180px}.contact-card{grid-template-columns:48px 1fr auto}.contact-avatar{width:44px;height:54px}}
+
+</style></head>
+<body>
+<div id="loginView" class="login">
+  <div class="card center"><img class="logo" src="assets/pgpm.png" alt="PGPM" style="margin:auto"><div class="brand">PERTUBUHAN GERAK PANGLIMA MALAYSIA</div><div class="title">ADMIN CONTROL</div><p class="small" style="color:var(--muted)">Portal kawalan permohonan pentadbir Roda Impian PGPM.</p>
+  <div class="tabs"><button class="tab active" data-login-tab="login">Login</button><button class="tab" data-login-tab="bootstrap">First Owner</button></div>
+  <section id="loginBox"><div class="field"><label>Email atau Username</label><input id="loginId" autocomplete="username"></div><div class="field"><label>Password</label><input id="loginPw" type="password" autocomplete="current-password"></div><button class="btn primary" id="loginBtn" style="width:100%">Login</button><div id="loginMsg" class="msg"></div></section>
+  <section id="bootstrapBox" class="hidden"><div class="notice">First Owner hanya digunakan sekali. Jika owner sudah wujud, fungsi ini akan dikunci.</div><div class="field"><label>Nama Owner</label><input id="ownerName" autocomplete="name"></div><div class="field"><label>Username Owner</label><input id="ownerUsername" autocomplete="username"></div><div class="field"><label>Email Owner</label><input id="ownerEmail" type="email" autocomplete="email"></div><div class="field"><label>Password</label><input id="ownerPw" type="password" autocomplete="new-password"></div><div class="field"><label>Bootstrap Key</label><input id="bootstrapKey" type="password" autocomplete="off"></div><button class="btn primary" id="ownerSignupBtn" style="width:100%">Daftar / Aktifkan Owner</button><div id="ownerMsg" class="msg"></div><p class="small" style="color:var(--muted)">Jika akaun owner belum pernah dibuat, akaun akan dicipta sebagai pending dan perlu pengesahan email sebelum bootstrap boleh diselesaikan.</p></section>
+  </div><div class="footer">© 2026 Pertubuhan Gerak Panglima Malaysia · PGPM Admin Control</div>
+</div>
+<button id="adminTourInfo" class="pgpm-at-info hidden" title="Panduan">i</button>
+<div id="appView" class="hidden"><div class="wrap"><header class="top"><img class="logo" src="assets/pgpm.png" alt="PGPM"><div><div class="brand">PERTUBUHAN GERAK PANGLIMA MALAYSIA</div><div class="title">ADMIN CONTROL</div></div><div class="header-tools"><button class="bell-btn" id="bellBtn" title="Notifikasi"><i class="fa-solid fa-bell"></i><span id="bellBadge" class="bell-badge hidden">0</span></button><div class="user" id="who"></div></div></header>
+  <div id="adminLimitedView" class="admin-limited hidden">
+  <section class="card">
+    <div class="notice invite-notice">
+      <b><i class="fa-solid fa-user-shield"></i> Akses Admin Terhad</b>
+      <p style="margin:7px 0 0">Akaun anda masih Admin biasa. Anda boleh masuk ke portal ini hanya untuk menerima atau menolak jemputan Super Admin melalui ikon loceng.</p>
+      <p class="role-note"><i class="fa-solid fa-circle-info"></i> Anda tidak mempunyai akses kepada Permohonan, Pentadbir, Audit Log, Tetapan atau Chat sehingga anda menerima jemputan dan menjadi Super Admin.</p>
+    </div>
+    <div class="push" style="margin-top:14px;margin-bottom:0">
+      <div><b><i class="fa-solid fa-bell"></i> Notifikasi Telefon</b><div class="switch" id="limitedPushStatus">Belum diaktifkan pada peranti ini.</div></div>
+      <button class="btn primary" id="limitedPushBtn"><i class="fa-solid fa-bell"></i> Aktifkan</button>
+    </div>
+    <div style="display:flex;justify-content:flex-end;margin-top:14px"><button class="btn" id="limitedLogoutBtn"><i class="fa-solid fa-right-from-bracket"></i> Logout</button></div>
+  </section>
+</div>
+  <div id="fullControl">
+  <div class="card"><div class="push"><div><b><i class="fa-solid fa-bell"></i> Push Notification</b><div class="switch" id="pushStatus">Belum diaktifkan pada peranti ini.</div></div><button class="btn primary" id="pushBtn">Aktifkan</button></div>
+  <section class="notice" style="margin:14px 0 0">
+    <b><i class="fa-solid fa-user"></i> Maklumat Admin</b>
+    <div class="profile-admin-card">
+      <div><img id="profileAdminAvatar" class="profile-admin-avatar empty" src="assets/pgpm.png" alt="Gambar admin"></div>
+      <div>
+        <div class="profile-admin-grid">
+          <div class="profile-admin-item"><span>Nama penuh</span><b id="profileAdminName">—</b></div>
+          <div class="profile-admin-item"><span>Username</span><b id="profileAdminUsername">—</b></div>
+          <div class="profile-admin-item"><span>Email</span><b id="profileAdminEmail">—</b></div>
+          <div class="profile-admin-item"><span>No. telefon</span><b id="profileAdminPhone">—</b></div>
+          <div class="profile-admin-item"><span>Role</span><b id="profileAdminRole">—</b></div>
+        </div>
+        <div style="margin-top:10px"><input id="profileAdminAvatarFile" type="file" accept="image/jpeg,image/png,image/webp"><div class="small" style="margin-top:7px;color:var(--muted)">Gambar passport: nisbah 7:9 · 700×900 / 800×1030 px · JPG/PNG/WebP · maksimum 2 MB.</div><div id="profileAdminMsg" class="small" style="margin-top:6px"></div></div>
+      </div>
+    </div>
+  </section>
+  <div class="tabs"><button class="tab active" data-tab="requests">Permohonan <span class="count" id="pendingCount">0</span></button><button class="tab" id="tourTabAdmins" data-tab="admins">Pentadbir</button><button class="tab hidden" id="superTab" data-tab="superadmins">Super Admin</button><button class="tab" id="tourTabAudit" data-tab="audit">Audit Log</button><button class="tab" id="tourTabSettings" data-tab="settings">Tetapan</button><button class="btn ghost" id="logoutBtn">Logout</button></div>
+  <section id="tab-requests"><div class="statgrid"><div class="stat"><b id="sPending">0</b><span>Pending</span></div><div class="stat"><b id="sAdmins">0</b><span>Admin / Owner / Super Admin</span></div><div class="stat"><b id="sAudit">0</b><span>Audit events</span></div></div><div id="requests"></div></section>
+  <section id="tab-admins" class="hidden"><div id="admins"></div></section>
+  <section id="tab-superadmins" class="hidden"><div class="notice super-tab-note"><b><i class="fa-solid fa-shield-halved"></i> Super Admin</b><div class="small" style="margin-top:6px;color:var(--muted)">Owner boleh melihat semua Super Admin. Owner dan Super Admin boleh menghantar mesej antara satu sama lain melalui ikon <i class="fa-solid fa-message"></i>.</div></div><div id="superAdmins"></div></section>
+  <section id="tab-audit" class="hidden"><div id="audit"></div></section>
+  <section id="tab-settings" class="hidden"><div class="notice">Portal ini menggunakan Supabase Auth + RLS/RPC. Jangan letakkan service-role key atau private VAPID key di frontend.</div><div class="field" style="margin-top:14px"><label>Push endpoint pada peranti ini</label><input id="pushEndpoint" readonly></div></section>
+  </div>
+  </div><div class="footer">© 2026 Pertubuhan Gerak Panglima Malaysia · ~hariz dev/designer/maintener/engineer</div></div></div>
+<div id="notificationPanel" class="notification-panel hidden"><div class="notification-head"><b><i class="fa-solid fa-bell"></i> Notifikasi</b><button class="icon-btn" id="closeNotifications" title="Tutup"><i class="fa-solid fa-xmark"></i></button></div><div id="notificationList"></div></div>
+<div id="chatModal" class="modal-backdrop hidden"><div class="modal"><div class="modal-head"><div><b><i class="fa-solid fa-comments"></i> Mesej PGPM</b><div id="chatSubtitle" class="small" style="color:var(--muted);margin-top:3px"></div></div><button class="modal-close" id="closeChat"><i class="fa-solid fa-xmark"></i></button></div><div class="chat-layout"><div class="chat-contacts" id="chatContacts"></div><div class="chat-main"><div class="chat-title" id="chatTitle">Pilih penerima</div><div class="chat-messages" id="chatMessages"><div class="empty">Pilih Owner atau Super Admin untuk mula bersembang.</div></div><div class="chat-compose"><label class="icon-btn" title="Lampirkan fail"><i class="fa-solid fa-paperclip"></i><input id="chatFile" class="chat-file" type="file"></label><span id="attachName" class="attach-name"></span><textarea id="chatInput" placeholder="Tulis mesej…"></textarea><button class="btn primary" id="sendChat" title="Hantar"><i class="fa-solid fa-paper-plane"></i></button></div></div></div></div></div>
+<div class="toast" id="toast"></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SUPABASE_URL='https://pqrlqfooufhgblomnrqd.supabase.co';
+const SUPABASE_KEY='sb_publishable_AdKhI1wugEGQBkGCG_zHTg_F8dBRxO0';
+const VAPID_PUBLIC_KEY='BOVyCJuRBVu1Vl8uHdgxIuS65PG1WBgD4OJ655UsOR2P6KkpeVDC_Hlxyf-YmeQemYgkmuVAxsja3S0GYnjKzJQ';
+const sb=supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+let currentUser=null,currentProfile=null,poll=null;
+const $=s=>document.querySelector(s); const esc=s=>String(s??'').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
+
+/* Guided tour v2: per-admin first login, manual replay with i, unobstructed spotlight. */
+const AT_TOUR_VERSION='v2';
+let atTour=null,atLastTarget=null;
+function atKey(){return currentUser?.id?'pgpm_admin_control_tour_'+AT_TOUR_VERSION+'_'+currentUser.id:'pgpm_admin_control_tour_'+AT_TOUR_VERSION+'_unknown'}
+function atDone(){return localStorage.getItem(atKey())==='done'||localStorage.getItem(atKey().replace('_v2_','_v1_'))==='done'}
+function atClear(){if(atLastTarget){atLastTarget.classList.remove('pgpm-at-target');atLastTarget=null}document.querySelectorAll('.pgpm-at-dim').forEach(x=>x.remove())}
+function atClose(done=false){atClear();const x=document.getElementById('pgpmAtLayer');if(x)x.remove();if(done)localStorage.setItem(atKey(),'done');atTour=null}
+function atSpotlight(t,layer){if(!t)return;const r=t.getBoundingClientRect(),p=10,x=Math.max(0,r.left-p),y=Math.max(0,r.top-p),right=Math.min(innerWidth,r.right+p),bottom=Math.min(innerHeight,r.bottom+p);[[0,0,innerWidth,y],[0,bottom,innerWidth,innerHeight-bottom],[0,y,x,bottom-y],[right,y,innerWidth-right,bottom-y]].forEach(([l,tp,w,h])=>{if(w<=0||h<=0)return;const d=document.createElement('div');d.className='pgpm-at-dim';d.style.left=l+'px';d.style.top=tp+'px';d.style.width=w+'px';d.style.height=h+'px';layer.appendChild(d)})}
+function atPlace(card,t){const m=14;if(!t){card.style.left='50%';card.style.top='50%';card.style.transform='translate(-50%,-50%)';return}const r=t.getBoundingClientRect(),cw=Math.min(470,innerWidth-28),ch=card.offsetHeight||210;let l=r.left+r.width/2-cw/2;l=Math.max(m,Math.min(l,innerWidth-cw-m));let tp=r.bottom+18;if(tp+ch>innerHeight-m)tp=r.top-ch-18;if(tp<m)tp=m;card.style.left=l+'px';card.style.top=tp+'px';card.style.transform='none'}
+function atSteps(){return[
+ {target:'pendingCount',title:'1. Permohonan Admin',text:'Bahagian ini menunjukkan jumlah permohonan admin yang menunggu tindakan.',required:false},
+ {target:'sAdmins',title:'2. Senarai Pentadbir',text:'Stat ini menunjukkan jumlah pentadbir yang tersedia dalam sistem.',required:false},
+ {target:'sAudit',title:'3. Audit Log',text:'Stat ini menunjukkan jumlah rekod audit yang dimuatkan.',required:false},
+ {target:'pushBtn',title:'4. Push Notification',text:'Bahagian ini digunakan untuk mengaktifkan notifikasi pada peranti ini.',required:false},
+ {target:'tourTabAdmins',title:'5. Tab Pentadbir',text:'Tekan tab ini apabila anda mahu melihat dan mengurus akaun admin/owner.',required:true},
+ {target:'tourTabAudit',title:'6. Tab Audit Log',text:'Tekan tab ini untuk melihat rekod tindakan pentadbiran.',required:true},
+ {target:'tourTabSettings',title:'7. Tetapan',text:'Tekan tab ini untuk melihat tetapan portal dan maklumat berkaitan.',required:true},
+ {target:'logoutBtn',title:'8. Logout',text:'Gunakan Logout apabila selesai. Tour akan tamat selepas langkah ini.',required:false}
+]}
+function atRender(){if(!atTour)return;const old=document.getElementById('pgpmAtLayer');if(old)old.remove();atClear();const st=atTour.steps[atTour.i],layer=document.createElement('div');layer.id='pgpmAtLayer';layer.className='pgpm-at-layer';const card=document.createElement('div');card.className='pgpm-at-card';card.innerHTML='<div class="pgpm-at-step">'+(atTour.i+1)+' / '+atTour.steps.length+' · ADMIN CONTROL</div><h3>'+esc(st.title)+'</h3><p>'+esc(st.text)+'</p>'+(st.required?'<div class="pgpm-at-required">● Sila buka bahagian ini dahulu sebelum teruskan.</div>':'')+'<div class="pgpm-at-actions"><button class="pgpm-at-btn" id="atPrev" '+(atTour.i===0?'disabled':'')+'>← Kembali</button><button class="pgpm-at-btn primary" id="atNext">'+(atTour.i===atTour.steps.length-1?'Selesai':'Seterusnya →')+'</button></div>';layer.appendChild(card);document.body.appendChild(layer);const t=document.getElementById(st.target);if(t){try{t.scrollIntoView({behavior:'smooth',block:'center',inline:'center'})}catch(e){}t.classList.add('pgpm-at-target');atLastTarget=t;requestAnimationFrame(()=>{atSpotlight(t,layer);atPlace(card,t)})}else requestAnimationFrame(()=>atPlace(card,null));const next=document.getElementById('atNext');if(st.required){next.disabled=true;if(t)t.addEventListener('click',()=>{if(atTour?.steps?.[atTour.i]===st)next.disabled=false},{once:true})}document.getElementById('atPrev').onclick=()=>{if(atTour.i>0){atTour.i--;atRender()}};next.onclick=()=>{if(next.disabled)return;if(atTour.i<atTour.steps.length-1){atTour.i++;atRender()}else atClose(true)}}
+function startAdminControlTour(force=false){if(!currentUser)return;if(!force&&atDone())return;atClose(false);atTour={i:0,steps:atSteps()};atRender()}
+function startAdminControlTourIfFresh(){if(currentUser&&!atDone())setTimeout(()=>startAdminControlTour(true),500)}
+
+function toast(t,ok=true){const x=$('#toast');x.textContent=t;x.style.borderColor=ok?'var(--gold)':'var(--bad)';x.classList.add('show');clearTimeout(window.__tt);window.__tt=setTimeout(()=>x.classList.remove('show'),6500)}
+async function resolveEmail(id){if(id.includes('@'))return id.trim().toLowerCase();const {data,error}=await sb.rpc('get_login_email_by_username',{p_username:id.trim().toLowerCase()});if(error)throw error;if(!data)throw new Error('Username tidak ditemui.');return data}
+async function login(){const id=$('#loginId').value.trim(),pw=$('#loginPw').value;if(!id||!pw){$('#loginMsg').textContent='Sila isi semua maklumat.';return}$('#loginMsg').textContent='Sedang login…';const email=await resolveEmail(id);const {data,error}=await sb.auth.signInWithPassword({email,password:pw});if(error)throw error;currentUser=data.user;await enterApp()}
+
+const AVATAR_BUCKET='profile-avatars', AVATAR_MAX=2*1024*1024;
+async function avatarPreviewData(file){
+  if(!file) throw new Error('Pilih gambar dahulu.');
+  if(!/^image\/(jpeg|png|webp)$/.test(file.type)) throw new Error('Format mesti JPG, PNG atau WebP.');
+  if(file.size>AVATAR_MAX) throw new Error('Saiz maksimum 2 MB.');
+  return await new Promise((resolve,reject)=>{
+    const r=new FileReader();
+    r.onerror=()=>reject(new Error('Gambar gagal dibaca.'));
+    r.onload=()=>{
+      const img=new Image();
+      img.onerror=()=>reject(new Error('Fail gambar tidak sah.'));
+      img.onload=()=>{
+        const scale=Math.min(1,800/img.naturalWidth,1030/img.naturalHeight);
+        const c=document.createElement('canvas');
+        c.width=Math.max(1,Math.round(img.naturalWidth*scale));
+        c.height=Math.max(1,Math.round(img.naturalHeight*scale));
+        c.getContext('2d').drawImage(img,0,0,c.width,c.height);
+        c.toBlob(b=>{
+          if(!b) return reject(new Error('Gagal memproses gambar.'));
+          if(b.size>AVATAR_MAX) return reject(new Error('Gambar selepas diproses masih melebihi 2 MB.'));
+          resolve(b);
+        },'image/jpeg',.88);
+      };
+      img.src=r.result;
+    };
+    r.readAsDataURL(file);
+  });
+}
+async function loadAdminAvatar(){
+  const p=currentProfile||{};$('#profileAdminName').textContent=p.full_name||'—';$('#profileAdminUsername').textContent=p.username||'—';$('#profileAdminEmail').textContent=currentUser?.email||'—';$('#profileAdminPhone').textContent=p.phone||'—';$('#profileAdminRole').textContent=p.role||'—';
+  if(!p.avatar_path)return;
+  const {data,error}=await sb.storage.from(AVATAR_BUCKET).createSignedUrl(p.avatar_path,3600);if(!error&&data?.signedUrl){$('#profileAdminAvatar').src=data.signedUrl;$('#profileAdminAvatar').classList.remove('empty')}
+}
+async function saveAdminAvatar(file){
+  const msg=$('#profileAdminMsg');try{msg.textContent='Memproses gambar…';const blob=await avatarPreviewData(file);const path=currentUser.id+'/profile.jpg';const {error}=await sb.storage.from(AVATAR_BUCKET).upload(path,blob,{contentType:'image/jpeg',upsert:true});if(error)throw error;const {error:pe}=await sb.rpc('set_my_avatar_path',{p_avatar_path:path});if(pe)throw pe;currentProfile.avatar_path=path;await loadAdminAvatar();msg.textContent='Gambar admin berjaya dikemas kini.'}catch(e){msg.textContent=e.message||'Gagal mengubah gambar.'}}
+
+async function enterApp(){
+  const {data:profileData,error}=await sb.rpc('get_my_admin_control_profile');
+  if(error)throw error; if(!profileData)throw new Error('Profil akaun tidak ditemui.');
+  currentProfile=Array.isArray(profileData)?profileData[0]:profileData; if(!currentProfile)throw new Error('Profil akaun tidak ditemui.');
+  const data=currentProfile;
+  await loadAdminAvatar();
+  $('#loginView').classList.add('hidden'); $('#appView').classList.remove('hidden');
+  $('#who').innerHTML='<b>'+esc(data.full_name||data.username||'Admin')+'</b><br>@'+esc(data.username||'')+' · '+esc(data.role);
+  if(data.role==='admin'){
+    $('#fullControl').classList.add('hidden'); $('#adminLimitedView').classList.remove('hidden'); $('#adminTourInfo').classList.add('hidden');
+    await setupNotifications(); await refreshLimitedPushState();
+    return;
+  }
+  if(!['owner','super_admin'].includes(data.role))throw new Error('Akaun ini tidak mempunyai akses ke Admin Control.');
+  $('#adminLimitedView').classList.add('hidden'); $('#fullControl').classList.remove('hidden'); $('#adminTourInfo').classList.remove('hidden');
+  $('#superTab').classList.toggle('hidden',data.role!=='owner');
+  await refreshAll(); await setupNotifications(); await setupRealtime(); await refreshPushState(); startAdminControlTourIfFresh();
+}
+
+async function refreshAll(){await Promise.all([loadRequests(),loadAdmins(),loadSuperAdmins(),loadAudit(),loadNotifications()])}
+
+async function setupNotifications(){await loadNotifications(); if(window.__notifPoll)clearInterval(window.__notifPoll); window.__notifPoll=setInterval(()=>loadNotifications().catch(()=>{}),10000)}
+async function loadNotifications(){
+  let list=[];
+  const {data,error}=await sb.rpc('get_my_control_notifications',{p_limit:50});
+  if(!error) list=data||[];
+  // Safety fallback: an existing pending Super Admin invitation must still appear
+  // even if the invitation was created by an older SQL function before v1.9.1.
+  if(currentProfile?.role==='admin'){
+    try{
+      const {data:inv}=await sb.rpc('get_my_super_admin_invitation');
+      if(inv?.id && !list.some(n=>n.type==='super_admin_invitation'&&n.reference_id===inv.id)){
+        list.unshift({id:'pending-invite:'+inv.id,type:'super_admin_invitation',title:'Penerimaan Super Admin',body:'Owner telah menghantar jemputan kepada anda untuk menjadi Super Admin. Tekan notifikasi ini untuk melihat syarat dan pilihan Terima/Tolak.',reference_id:inv.id,created_at:inv.created_at,read_at:null,data:{fallback:true}});
+      }
+    }catch(e){}
+  }
+  list.sort((a,b)=>new Date(b.created_at)-new Date(a.created_at));
+  const unread=list.filter(x=>!x.read_at).length;
+  $('#bellBadge').textContent=unread>99?'99+':unread; $('#bellBadge').classList.toggle('hidden',unread===0);
+  if(error && !list.length){
+    $('#notificationList').innerHTML='<div class="notice bad">Notifikasi belum tersedia. Pastikan migration V1.9.1 sudah dijalankan.</div>';
+  } else {
+    $('#notificationList').innerHTML=list.length?list.map(n=>`<div class="notification-item ${n.read_at?'':'unread'}" data-notif="${esc(n.id)}" data-type="${esc(n.type||'')}" data-ref="${esc(n.reference_id||'')}"><h4>${esc(n.title||'Notifikasi')}</h4><p>${esc(n.body||'')}</p><small>${esc(new Date(n.created_at).toLocaleString('ms-MY'))}</small></div>`).join(''):'<div class="empty">Tiada notifikasi.</div>';
+  }
+  document.querySelectorAll('[data-notif]').forEach(el=>el.onclick=()=>openNotification(el.dataset.notif,el.dataset.type,el.dataset.ref));
+}
+async function openNotification(id,type,ref){
+  $('#notificationPanel').classList.add('hidden');
+  if(type==='super_admin_invitation'){
+    // Mark first so the bell count drops immediately, including legacy/fallback invitations.
+    if(String(id||'').startsWith('pending-invite:')){
+      await sb.rpc('mark_super_admin_invitation_read',{p_request_id:ref}).catch(()=>{});
+    }else{
+      await sb.rpc('mark_control_notification_read',{p_notification_id:id}).catch(()=>{});
+    }
+    // Open the decision UI without waiting for a second RPC.
+    openSuperInviteModal(ref).catch(e=>toast(e?.message||'Gagal membuka jemputan.',false));
+    await loadNotifications();
+    return;
+  }
+  if(!String(id||'').startsWith('pending-invite:')) await sb.rpc('mark_control_notification_read',{p_notification_id:id}).catch(()=>{});
+  if(type==='chat_message'&&ref){await openChat(ref);await loadNotifications();return}
+  await loadNotifications();
+}
+async function openSuperInviteModal(requestId){
+  if(!requestId){toast('ID jemputan tidak dijumpai.',false);return}
+  $('#chatModal').classList.add('hidden');
+  const old=document.getElementById('inviteDecisionModal'); if(old) old.remove();
+  // Render immediately. This prevents a slow/missing RPC from blocking the modal itself.
+  const box=document.createElement('div');box.className='modal-backdrop';box.id='inviteDecisionModal';box.innerHTML=`<div class="modal" style="max-width:650px"><div class="modal-head"><div><b><i class="fa-solid fa-shield-halved"></i> Penerimaan Super Admin</b><div id="inviteFrom" class="small" style="color:var(--muted);margin-top:3px">Jemputan sedang dimuatkan…</div></div><button class="modal-close" id="closeInviteDecision" title="Tutup"><i class="fa-solid fa-xmark"></i></button></div><div class="modal-body"><div class="notice invite-notice"><b>Syarat & tanggungjawab Super Admin</b><ul style="line-height:1.7;margin:10px 0 0;padding-left:20px"><li>Maksimum 5 akaun Super Admin pada satu masa.</li><li>Boleh meluluskan atau menolak permohonan admin.</li><li>Boleh menggunakan Admin Control dan melihat audit log.</li><li>Tidak boleh suspend, buang akses, promote Super Admin atau tukar ownership.</li><li>Boleh berkomunikasi dengan Owner dan Super Admin lain melalui mesej.</li><li>Anda perlu menjaga kerahsiaan maklumat pentadbiran dan tidak berkongsi akses akaun.</li></ul></div><p style="line-height:1.6">Anda boleh menerima atau menolak jemputan ini. Jika menolak, akaun kekal sebagai Admin biasa dan Owner boleh menghantar jemputan semula pada masa akan datang.</p><div class="actions" style="justify-content:flex-end;margin-top:15px"><button class="btn danger" id="inviteReject"><i class="fa-solid fa-xmark"></i> Tolak</button><button class="btn ok" id="inviteAccept"><i class="fa-solid fa-check"></i> Terima & Jadi Super Admin</button></div><div id="inviteDecisionMsg" class="msg" style="text-align:right;margin-top:9px"></div></div></div>`;
+  document.body.appendChild(box);
+  $('#closeInviteDecision').onclick=()=>box.remove();
+  $('#inviteReject').onclick=()=>respondSuperAdminInvitation(requestId,false,box);
+  $('#inviteAccept').onclick=()=>respondSuperAdminInvitation(requestId,true,box);
+  // Load details after the modal is already visible.
+  try{
+    const {data,error}=await sb.rpc('get_my_super_admin_invitation');
+    if(error)throw error;
+    if(!data?.id){ $('#inviteDecisionMsg').textContent='Jemputan ini sudah tiada atau telah diproses.'; $('#inviteAccept').disabled=true; $('#inviteReject').disabled=true; return; }
+    $('#inviteFrom').textContent='Jemputan daripada @'+esc(data.requested_by_username||'owner');
+  }catch(e){
+    $('#inviteFrom').textContent='Jemputan daripada Owner';
+  }
+}
+async function respondSuperAdminInvitation(id,accept,modal){const b=accept?modal.querySelector('#inviteAccept'):modal.querySelector('#inviteReject');b.disabled=true;modal.querySelector('#inviteDecisionMsg').textContent='Memproses…';const {data,error}=await sb.rpc(accept?'accept_super_admin_invitation':'reject_super_admin_invitation',{p_request_id:id});if(error){b.disabled=false;modal.querySelector('#inviteDecisionMsg').textContent=error.message||'Tindakan gagal.';return}if(!data){b.disabled=false;modal.querySelector('#inviteDecisionMsg').textContent='Jemputan sudah berubah atau tidak dijumpai.';return}modal.remove();toast(accept?'Jemputan diterima. Anda kini Super Admin.':'Jemputan ditolak. Anda kekal sebagai Admin.');if(accept)location.reload();else await loadNotifications()}
+
+async function refreshAll(){await Promise.all([loadRequests(),loadAdmins(),loadAudit()])}
+async function loadRequests(){const {data,error}=await sb.rpc('get_pending_admin_requests');if(error)throw error;const a=data||[];$('#pendingCount').textContent=a.length;$('#sPending').textContent=a.length;$('#requests').innerHTML=a.length?a.map(r=>{const actions=['owner','super_admin'].includes(currentProfile?.role)?`<div class="actions"><button class="btn ok" data-a="${esc(r.id)}">✓ Approve</button><button class="btn danger" data-r="${esc(r.id)}">× Reject</button></div>`:'<div class="meta">Menunggu tindakan Owner.</div>';return `<div class="request"><div><b>${esc(r.full_name||r.username||'Pengguna')}</b><div class="meta">@${esc(r.username||'')} · ${esc(r.email||'')}<br>Tel: ${esc(r.phone||'—')}<br>Daftar: ${esc(r.created_at?new Date(r.created_at).toLocaleString('ms-MY'):'—')}</div></div>${actions}</div>`}).join(''):'<div class="empty">Tiada permohonan pending.</div>';document.querySelectorAll('[data-a]').forEach(b=>b.onclick=()=>decide(b.dataset.a,true));document.querySelectorAll('[data-r]').forEach(b=>b.onclick=()=>decide(b.dataset.r,false))}
+async function decide(id,approve){const {data,error}=await sb.rpc(approve?'approve_admin_request':'reject_admin_request',{p_user_id:id});if(error)throw error;if(!data)throw new Error('Permohonan sudah berubah atau tidak dijumpai.');toast(approve?'Akaun berjaya dijadikan admin.':'Permohonan ditolak.',true);await refreshAll()}
+async function loadAdmins(){
+  const {data,error}=await sb.rpc('get_admin_accounts_v190');
+  if(error){$('#admins').innerHTML='<div class="notice bad">'+esc(error.message)+'</div>';return}
+  const a=data||[];$('#sAdmins').textContent=a.length;
+  $('#admins').innerHTML=a.map(r=>{
+    let actions='';
+    if(currentProfile?.role==='owner'&&r.role==='admin'){
+      const invitePending=r.super_admin_request_status==='pending';
+      actions=`<button class="btn ${invitePending?'ghost':'primary'}" data-sa="${esc(r.id)}" ${invitePending?'disabled':''}>${invitePending?'<i class="fa-solid fa-paper-plane"></i> Jemputan Dihantar':'<i class="fa-solid fa-shield-halved"></i> Jadikan Super Admin'}</button><button class="btn danger" data-s="${esc(r.id)}">Suspend</button><button class="btn danger" data-rm="${esc(r.id)}">Buang Akses</button>`;
+    } else if(currentProfile?.role==='super_admin' && r.role==='owner'){actions=`<button class="icon-btn" data-chat="${esc(r.id)}" title="Mesej Owner"><i class="fa-solid fa-message"></i></button>`}
+    if(['owner','super_admin'].includes(currentProfile?.role)&&r.role==='super_admin' && r.id!==currentUser.id){actions+=`<button class="icon-btn" data-chat="${esc(r.id)}" title="Mesej Super Admin"><i class="fa-solid fa-message"></i></button>`}
+    if(currentProfile?.role==='owner'&&r.role==='super_admin')actions+=`<span class="role-chip"><i class="fa-solid fa-shield-halved"></i> SUPER ADMIN</span>`;
+    if(currentProfile?.role==='owner'&&r.role==='suspended')actions=`<button class="btn ok" data-re="${esc(r.id)}">Aktifkan Semula</button><button class="btn danger" data-rm="${esc(r.id)}">Buang Akses</button>`;
+    if(currentProfile?.role==='super_admin'&&r.role==='admin')actions='<span class="small" style="color:var(--muted)">Admin biasa</span>';
+    const badge=r.role==='owner'?'<i class="fa-solid fa-crown"></i> OWNER':r.role==='super_admin'?'<i class="fa-solid fa-shield-halved"></i> SUPER ADMIN':r.role.toUpperCase();
+    return `<div class="request"><div><b>${esc(r.full_name||r.username||'—')}</b><div class="meta">@${esc(r.username||'')} · ${esc(r.email||'')}<br>Role: ${badge}<br>Updated: ${esc(r.updated_at?new Date(r.updated_at).toLocaleString('ms-MY'):'—')}</div></div><div class="actions">${actions}</div></div>`
+  }).join('')||'<div class="empty">Tiada pentadbir.</div>';
+  document.querySelectorAll('[data-sa]').forEach(b=>b.onclick=()=>requestSuperAdmin(b.dataset.sa));document.querySelectorAll('[data-s]').forEach(b=>b.onclick=()=>suspend(b.dataset.s));document.querySelectorAll('[data-rm]').forEach(b=>b.onclick=()=>removeAdmin(b.dataset.rm));document.querySelectorAll('[data-re]').forEach(b=>b.onclick=()=>restoreAdmin(b.dataset.re));document.querySelectorAll('[data-chat]').forEach(b=>b.onclick=()=>openChat(b.dataset.chat));
+}
+async function loadSuperAdmins(){
+  const section=$('#tab-superadmins'); if(!section||currentProfile?.role!=='owner')return;
+  const {data,error}=await sb.rpc('get_control_contacts'); if(error){$('#superAdmins').innerHTML='<div class="notice bad">'+esc(error.message)+'</div>';return}
+  const a=(data||[]).filter(x=>x.role==='super_admin');
+  $('#superAdmins').innerHTML=a.length?a.map(r=>`<div class="contact-card"><img class="contact-avatar" src="${esc(r.avatar_url||'assets/pgpm.png')}" alt=""><div><b>${esc(r.full_name||r.username||'Super Admin')}</b><div class="meta">@${esc(r.username||'')} · ${esc(r.email||'')}</div><div class="role-chip"><i class="fa-solid fa-shield-halved"></i> SUPER ADMIN</div></div><button class="icon-btn" data-chat-super="${esc(r.id)}" title="Mesej"><i class="fa-solid fa-message"></i></button></div>`).join(''):'<div class="empty">Belum ada Super Admin diterima.</div>';
+  document.querySelectorAll('[data-chat-super]').forEach(b=>b.onclick=()=>openChat(b.dataset.chatSuper));
+}
+async function requestSuperAdmin(id){
+  if(!confirm('Jemput admin ini menjadi Super Admin? Admin tersebut MESTI menerima jemputan sendiri. Jika ditolak, role kekal sebagai admin.'))return;
+  const {data,error}=await sb.rpc('request_super_admin',{p_user_id:id});
+  if(error)throw error;if(!data)throw new Error('Jemputan tidak berjaya dihantar.');
+  toast('Jemputan Super Admin telah dihantar. Admin tersebut perlu menerima sendiri.');await refreshAll()
+}
+async function suspend(id){if(!confirm('Suspend admin ini?'))return;const {data,error}=await sb.rpc('suspend_admin',{p_user_id:id});if(error)throw error;if(!data)throw new Error('Tidak berjaya.');toast('Admin telah disuspend.');await refreshAll()}
+async function removeAdmin(id){if(!confirm('Buang akses admin ini? Akaun akan kembali ke pending dan perlu diluluskan semula oleh Owner.'))return;const {data,error}=await sb.rpc('remove_admin',{p_user_id:id});if(error)throw error;if(!data)throw new Error('Tidak berjaya.');toast('Akses admin telah dibuang.');await refreshAll()}
+async function restoreAdmin(id){if(!confirm('Aktifkan semula admin ini?'))return;const {data,error}=await sb.rpc('restore_admin',{p_user_id:id});if(error)throw error;if(!data)throw new Error('Tidak berjaya.');toast('Admin telah diaktifkan semula.');await refreshAll()}
+async function loadAudit(){const {data,error}=await sb.rpc('get_audit_log',{p_limit:100});if(error){$('#audit').innerHTML='<div class="notice bad">'+esc(error.message)+'</div>';return}const a=data||[];$('#sAudit').textContent=a.length;$('#audit').innerHTML=a.length?a.map(r=>`<div class="request"><div><b>${esc(r.action)}</b><div class="meta">${esc(r.actor_username||r.actor_email||'System')} · ${esc(r.target_username||'')}<br>${esc(r.details||'')}<br>${esc(new Date(r.created_at).toLocaleString('ms-MY'))}</div></div></div>`).join(''):'<div class="empty">Tiada audit log.</div>'}
+async function setupRealtime(){
+  try{sb.channel('pgpm-admin-live').on('postgres_changes',{event:'*',schema:'public',table:'profiles'},()=>{refreshAll().catch(()=>{})}).on('postgres_changes',{event:'*',schema:'public',table:'ripgpm_control_notifications',filter:`recipient_user_id=eq.${currentUser.id}`},()=>{loadNotifications().catch(()=>{})}).on('postgres_changes',{event:'INSERT',schema:'public',table:'ripgpm_control_messages'},()=>{loadNotifications().catch(()=>{});if(window.__activeChat)loadChatMessages(window.__activeChat).catch(()=>{})}).subscribe()}catch(e){}
+  if(poll)clearInterval(poll);poll=setInterval(()=>refreshAll().catch(()=>{}),30000)
+}
+async function refreshLimitedPushState(){
+  if(location.protocol!=='https:'&&location.hostname!=='localhost'){ $('#limitedPushStatus').textContent='Push hanya boleh diaktifkan melalui HTTPS atau localhost.';$('#limitedPushBtn').disabled=true;return }
+  if(!('serviceWorker' in navigator)||!('PushManager' in window)||VAPID_PUBLIC_KEY.startsWith('REPLACE')){$('#limitedPushStatus').textContent='Web Push belum dikonfigurasi.';$('#limitedPushBtn').disabled=true;return}
+  try{const reg=await navigator.serviceWorker.register('sw.js');const sub=await reg.pushManager.getSubscription();$('#limitedPushStatus').textContent=sub?'Push aktif pada peranti ini.':'Belum diaktifkan pada peranti ini.';$('#limitedPushBtn').innerHTML=sub?'<i class="fa-solid fa-check"></i> Aktif':'<i class="fa-solid fa-bell"></i> Aktifkan';$('#limitedPushBtn').disabled=!!sub}catch(e){$('#limitedPushStatus').textContent='Push tidak tersedia pada alamat fail tempatan. Deploy portal ke HTTPS untuk menggunakannya.';$('#limitedPushBtn').disabled=true}
+}
+async function enableLimitedPush(){if(location.protocol!=='https:'&&location.hostname!=='localhost')return;const reg=await navigator.serviceWorker.register('sw.js');const sub=await reg.pushManager.subscribe({userVisibleOnly:true,applicationServerKey:b64(VAPID_PUBLIC_KEY)});const json=sub.toJSON();const {error}=await sb.rpc('save_my_push_subscription',{p_endpoint:sub.endpoint,p_p256dh:json.keys.p256dh,p_auth:json.keys.auth});if(error)throw error;toast('Push notification berjaya diaktifkan.');await refreshLimitedPushState()}
+
+async function refreshPushState(){
+  if(location.protocol!=='https:'&&location.hostname!=='localhost'){ $('#pushStatus').textContent='Push hanya boleh diaktifkan melalui HTTPS atau localhost.';$('#pushBtn').disabled=true;return }
+  if(!('serviceWorker' in navigator)||!('PushManager' in window)||VAPID_PUBLIC_KEY.startsWith('REPLACE')){$('#pushStatus').textContent='Web Push belum dikonfigurasi.';$('#pushBtn').disabled=true;return}
+  try{const reg=await navigator.serviceWorker.register('sw.js');const sub=await reg.pushManager.getSubscription();$('#pushStatus').textContent=sub?'Push aktif pada peranti ini.':'Belum diaktifkan pada peranti ini.';$('#pushEndpoint').value=sub?.endpoint||'';$('#pushBtn').textContent=sub?'Aktif':'Aktifkan';$('#pushBtn').disabled=!!sub}catch(e){$('#pushStatus').textContent='Push tidak tersedia pada alamat fail tempatan. Deploy portal ke HTTPS untuk menggunakannya.';$('#pushBtn').disabled=true}
+}
+function b64(s){const p='='.repeat((4-s.length%4)%4),b=(s+p).replace(/-/g,'+').replace(/_/g,'/');return Uint8Array.from(atob(b),c=>c.charCodeAt(0))}
+async function enablePush(){if(location.protocol!=='https:'&&location.hostname!=='localhost')return;const reg=await navigator.serviceWorker.register('sw.js');const sub=await reg.pushManager.subscribe({userVisibleOnly:true,applicationServerKey:b64(VAPID_PUBLIC_KEY)});const json=sub.toJSON();const {error}=await sb.rpc('save_push_subscription',{p_endpoint:sub.endpoint,p_p256dh:json.keys.p256dh,p_auth:json.keys.auth});if(error)throw error;toast('Push notification berjaya diaktifkan.');await refreshPushState()}
+
+async function openChat(otherId){
+  $('#notificationPanel').classList.add('hidden'); window.__activeChat=otherId; $('#chatModal').classList.remove('hidden'); await loadChatContacts(); await loadChatMessages(otherId);
+}
+async function loadChatContacts(){const {data,error}=await sb.rpc('get_control_contacts');if(error){toast(error.message,false);return}const contacts=(data||[]).filter(x=>x.id!==currentUser.id);$('#chatContacts').innerHTML=contacts.length?contacts.map(c=>`<div class="chat-contact ${window.__activeChat===c.id?'active':''}" data-contact="${esc(c.id)}"><img class="mini-avatar" src="${esc(c.avatar_url||'assets/pgpm.png')}" alt=""><div><b>${esc(c.full_name||c.username||'')}</b><div class="meta">${c.role==='owner'?'<i class="fa-solid fa-crown"></i> OWNER':'<i class="fa-solid fa-shield-halved"></i> SUPER ADMIN'}</div></div></div>`).join(''):'<div class="empty">Tiada contact.</div>';document.querySelectorAll('[data-contact]').forEach(x=>x.onclick=()=>openChat(x.dataset.contact))}
+async function loadChatMessages(otherId){if(!otherId)return;const {data,error}=await sb.rpc('get_control_messages',{p_with_user_id:otherId,p_limit:100});if(error){$('#chatMessages').innerHTML='<div class="notice bad">'+esc(error.message)+'</div>';return}const msgs=data||[];const other=(await sb.rpc('get_control_contacts')).data?.find(x=>x.id===otherId);$('#chatTitle').innerHTML='<b>'+esc(other?.full_name||other?.username||'')+'</b> <span class="role-chip">'+(other?.role==='owner'?'<i class="fa-solid fa-crown"></i> OWNER':'<i class="fa-solid fa-shield-halved"></i> SUPER ADMIN')+'</span>';$('#chatSubtitle').textContent='Mesej peribadi antara akaun kawalan PGPM';$('#chatMessages').innerHTML=msgs.length?msgs.map(m=>{const mine=m.sender_id===currentUser.id;let a='';if(m.attachment_path){const href=esc(m.attachment_url||'#');if((m.attachment_type||'').startsWith('image/'))a=`<a class="attachment" href="${href}" target="_blank" rel="noopener"><img src="${href}" alt="Lampiran"></a>`;else a=`<a class="attachment" href="${href}" target="_blank" rel="noopener"><i class="fa-solid fa-file"></i> ${esc(m.attachment_name||'Fail lampiran')}</a>`}return `<div class="bubble ${mine?'mine':'theirs'}">${esc(m.body||'')}${a}<div class="small" style="opacity:.55;margin-top:5px">${esc(new Date(m.created_at).toLocaleString('ms-MY'))}</div></div>`}).join(''):'<div class="empty">Belum ada mesej.</div>';$('#chatMessages').scrollTop=$('#chatMessages').scrollHeight;await sb.rpc('mark_control_messages_read',{p_with_user_id:otherId}).catch(()=>{});}
+$('#chatFile').onchange=()=>$('#attachName').textContent=$('#chatFile').files?.[0]?.name||'';
+async function sendChat(){const otherId=window.__activeChat,body=$('#chatInput').value.trim(),file=$('#chatFile').files?.[0];if(!otherId)return toast('Pilih penerima dahulu.',false);if(!body&&!file)return;$('#sendChat').disabled=true;try{let path=null,name=null,type=null,size=null;if(file){if(file.size>10*1024*1024)throw new Error('Saiz fail maksimum 10 MB.');name=file.name;type=file.type||'application/octet-stream';size=file.size;path=`${currentUser.id}/${otherId}/${crypto.randomUUID()}-${file.name.replace(/[^a-zA-Z0-9._-]/g,'_')}`;const {error}=await sb.storage.from('ripgpm-chat').upload(path,file,{contentType:type,upsert:false});if(error)throw error}const {data,error}=await sb.rpc('send_control_message',{p_recipient_id:otherId,p_body:body,p_attachment_path:path,p_attachment_name:name,p_attachment_type:type,p_attachment_size:size});if(error)throw error;$('#chatInput').value='';$('#chatFile').value='';$('#attachName').textContent='';await loadChatMessages(otherId);await loadNotifications()}catch(e){toast(e.message||'Mesej gagal dihantar.',false)}finally{$('#sendChat').disabled=false}}
+$('#sendChat').onclick=()=>sendChat();$('#closeChat').onclick=()=>{$('#chatModal').classList.add('hidden');window.__activeChat=null};$('#limitedPushBtn').onclick=()=>enableLimitedPush().catch(e=>toast(e.message||'Push gagal.',false));$('#limitedLogoutBtn').onclick=async()=>{await sb.auth.signOut();location.reload()};$('#bellBtn').onclick=async()=>{const x=$('#notificationPanel');x.classList.toggle('hidden');if(!x.classList.contains('hidden'))await loadNotifications()};$('#closeNotifications').onclick=()=>$('#notificationPanel').classList.add('hidden');document.addEventListener('keydown',e=>{if(e.key==='Escape'){$('#notificationPanel').classList.add('hidden');$('#chatModal').classList.add('hidden')}});
+async function bootstrap(){const name=$('#ownerName').value.trim(),username=$('#ownerUsername').value.trim().toLowerCase(),email=$('#ownerEmail').value.trim().toLowerCase(),pw=$('#ownerPw').value,key=$('#bootstrapKey').value;if(!name||!username||!email||!pw||!key){$('#ownerMsg').textContent='Sila isi semua maklumat.';return}$('#ownerMsg').textContent='Menyediakan akaun owner…';let user=null;let session=null;let signupErr=null;try{const r=await sb.auth.signUp({email,password:pw,data:{full_name:name,username}});user=r.data?.user||null;session=r.data?.session||null;signupErr=r.error||null}catch(e){signupErr=e}if(signupErr){const msg=signupErr.message||String(signupErr);if(!/already registered|already exists/i.test(msg))throw signupErr;const r=await sb.auth.signInWithPassword({email,password:pw});if(r.error)throw r.error;user=r.data.user;session=r.data.session}if(!user)throw new Error('Akaun owner tidak berjaya disediakan.');if(!session){$('#ownerMsg').textContent='Akaun dicipta. Sahkan email dahulu. Selepas confirm, buka First Owner sekali lagi dan masukkan email, password serta bootstrap key yang sama untuk claim Owner.';return}const {data:r,error:e}=await sb.rpc('bootstrap_owner',{p_user_id:user.id,p_bootstrap_key:key});if(e)throw e;if(!r)throw new Error('Bootstrap gagal.');toast('Owner berjaya diaktifkan.');currentUser=user;await enterApp()}
+$('#adminTourInfo').onclick=()=>startAdminControlTour(true);
+$('#profileAdminAvatarFile').onchange=e=>saveAdminAvatar(e.target.files?.[0]);
+$('#loginBtn').onclick=()=>login().catch(e=>$('#loginMsg').textContent=e.message||'Login gagal.');$('#ownerSignupBtn').onclick=()=>bootstrap().catch(e=>$('#ownerMsg').textContent=e.message||'Bootstrap gagal.');$('#pushBtn').onclick=()=>enablePush().catch(e=>toast(e.message||'Push gagal.',false));$('#logoutBtn').onclick=async()=>{await sb.auth.signOut();location.reload()};document.querySelectorAll('[data-login-tab]').forEach(b=>b.onclick=()=>{document.querySelectorAll('[data-login-tab]').forEach(x=>x.classList.remove('active'));b.classList.add('active');$('#loginBox').classList.toggle('hidden',b.dataset.loginTab!=='login');$('#bootstrapBox').classList.toggle('hidden',b.dataset.loginTab!=='bootstrap')});document.querySelectorAll('[data-tab]').forEach(b=>b.onclick=()=>{document.querySelectorAll('[data-tab]').forEach(x=>x.classList.remove('active'));b.classList.add('active');['requests','admins','superadmins','audit','settings'].forEach(x=>$('#tab-'+x).classList.toggle('hidden',x!==b.dataset.tab));if(b.dataset.tab==='superadmins')loadSuperAdmins().catch(()=>{})});
+(async()=>{const {data}=await sb.auth.getSession();if(data.session){currentUser=data.session.user;try{await enterApp()}catch(e){await sb.auth.signOut();toast(e.message||'Akses ditolak.',false)}}})();
+</script></body></html>
