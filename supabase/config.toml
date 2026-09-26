@@ -1,0 +1,4 @@
+[functions.notify-admin-signup]
+verify_jwt = true
+[functions.notify-control-notification]
+verify_jwt = false
